@@ -3,6 +3,6 @@ packages:
 - '.'
 - location:
     git: git@github.com:krisajenkins/sigym4-geometry.git
-    commit: b4cb66f41cfa79dd3853ab4a9d6981a01170a8f5
+    commit: 182c9030431c75043fb00f8ecdc59fd3d91140f9
 extra-deps: []
 resolver: lts-3.0
