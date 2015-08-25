@@ -1,0 +1,8 @@
+flags: {}
+packages:
+- '.'
+- location:
+    git: git@github.com:krisajenkins/sigym4-geometry.git
+    commit: b4cb66f41cfa79dd3853ab4a9d6981a01170a8f5
+extra-deps: []
+resolver: lts-3.0
