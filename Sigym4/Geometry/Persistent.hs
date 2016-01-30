@@ -1,22 +1,22 @@
-{-# LANGUAGE OverloadedStrings
-           , MultiParamTypeClasses
-           , ScopedTypeVariables
-           , InstanceSigs
-           #-}
+{-# LANGUAGE InstanceSigs          #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE OverloadedStrings     #-}
+{-# LANGUAGE ScopedTypeVariables   #-}
 module Sigym4.Geometry.Persistent (GeoEsqueleto(..)) where
 
-import Data.String (fromString)
-import Data.Proxy (Proxy(..))
-import Data.ByteString.Lazy (fromChunks, toStrict)
-import Database.Persist
-import Database.Persist.Postgresql
-import Database.Esqueleto
-import Database.Esqueleto.Internal.Sql
-import qualified Data.ByteString.Base16 as B16
-import Sigym4.Geometry
-import Sigym4.Geometry.Binary
-import Data.Binary (encode)
-import Unsafe.Coerce (unsafeCoerce)
+import           Data.Binary                     (encode)
+import qualified Data.ByteString.Base16          as B16
+import           Data.ByteString.Lazy            (fromChunks, toStrict)
+import           Data.Proxy                      (Proxy (..))
+import           Data.String                     (fromString)
+import           Database.Esqueleto
+import           Database.Esqueleto.Internal.Sql
+import           Database.Persist
+import           Database.Persist.Postgresql
+import           Sigym4.Geometry                 hiding (encode)
+import           Sigym4.Geometry.Binary
+import           Sigym4.Geometry.Types
+import           Unsafe.Coerce                   (unsafeCoerce)
 
 instance (VectorSpace v, KnownNat srid) => PersistField (Geometry v srid) where
     toPersistValue = PersistDbSpecific . B16.encode . toStrict
@@ -125,7 +125,7 @@ class Esqueleto query expr backend => GeoEsqueleto query expr backend where
        => expr (Value (Geometry v srid))
        -> expr (Value Double)
 
-    
+
 instance GeoEsqueleto SqlQuery SqlExpr SqlBackend where
     fullyWithin :: forall v srid. (VectorSpace v, KnownNat srid)
                => SqlExpr (Value (Geometry v srid))
@@ -205,4 +205,4 @@ func2d3d p a b
   = case dim p of
       2 -> a
       3 -> b
-      _ -> error "Sigym4/Geometry/Persistent.2d3d: only V2 and V3 are supported" 
+      _ -> error "Sigym4/Geometry/Persistent.2d3d: only V2 and V3 are supported"
