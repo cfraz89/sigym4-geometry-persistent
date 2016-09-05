@@ -3,9 +3,9 @@ packages:
 - '.'
 - location:
     git: git@github.com:krisajenkins/sigym4-geometry.git
-    commit: 052b2cbb7301092a135121ebc87de2c65ee0b0e6
+    commit: 26d0cef776106b9dba8b933296865f7bcc81d902
 - location:
     git: https://github.com/meteogrid/spatial-reference.git
     commit: de83fe1319e14937c71e82baeca3f5f3411d1a49
 extra-deps: []
-resolver: lts-5.18
+resolver: lts-6.15
