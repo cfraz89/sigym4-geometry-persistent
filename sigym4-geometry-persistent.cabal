@@ -40,6 +40,8 @@ test-suite spec
       test
   main-is:
       Spec.hs
+  other-modules:
+      Sigym4.Geometry.PersistentSpec
   build-depends:
       base, esqueleto, persistent, transformers, resourcet, text
     , conduit
