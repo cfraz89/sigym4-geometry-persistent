@@ -8,4 +8,4 @@ packages:
     git: https://github.com/meteogrid/spatial-reference.git
     commit: de83fe1319e14937c71e82baeca3f5f3411d1a49
 extra-deps: []
-resolver: lts-6.15
+resolver: lts-9.2
